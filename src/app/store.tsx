@@ -1,16 +1,22 @@
-import { TypedUseSelectorHook, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-import quizReducer from 'app/app-reducer'
-import { combineReducers, legacy_createStore as createStore } from 'redux'
+import { quizReducer } from 'features'
+import { Action, applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
+import { ThunkDispatch, thunk as thunkMiddleware } from 'redux-thunk'
 
 const rootReducer = combineReducers({
-  app: quizReducer,
+  quiz: quizReducer,
 })
 
-export const store = createStore(rootReducer)
-
-export type AppRootStateType = ReturnType<typeof store.getState>
-export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
+const middleware = applyMiddleware(thunkMiddleware)
 
 // @ts-ignore
+export const store = createStore(rootReducer, middleware)
+
+export type AppRootStateType = ReturnType<typeof rootReducer>
+export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
+export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
+// @ts-ignore
 window.store = store
+
+export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, Action>
