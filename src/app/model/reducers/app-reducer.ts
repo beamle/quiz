@@ -3,6 +3,7 @@ import { resetQuiz } from 'features'
 
 const initialState: InitialStateType = {
   appStatus: false,
+  isLoading: false,
 }
 
 export const appReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -33,11 +34,11 @@ export const resetAppStatus = () =>
 export const resetApp = () => (dispatch: AppThunkDispatch) => {
   dispatch(resetAppStatus())
   dispatch(resetQuiz())
-  // dispatch(resetAppStatus())
 }
 
 type InitialStateType = {
   appStatus: boolean
+  isLoading: boolean
 }
 
 type ActionsType = ReturnType<typeof initiateApp> | ReturnType<typeof resetAppStatus>

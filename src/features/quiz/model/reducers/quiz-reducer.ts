@@ -1,5 +1,4 @@
 import { questionsData, questionsDataAPI } from 'app/api/app-api'
-import { ActionsType, InitialStateType, QuestionsDataType, StateStatusType } from 'app/model/types'
 import { AppRootStateType, AppThunkDispatch } from 'app/store'
 
 const initialState: InitialStateType = {
@@ -91,4 +90,28 @@ export const selectIsCurrentAnswerCorrect = (state: AppRootStateType) => {
   const selectedAnswer = state.quiz.userAnswers[state.quiz.currentQuestionIndex - 1]
 
   return selectedAnswer === currentQuestion?.correctAnswer
+}
+
+export type ActionsType =
+  | ReturnType<typeof calculateScore>
+  | ReturnType<typeof resetQuiz>
+  | ReturnType<typeof selectAnswer>
+  | ReturnType<typeof setAppStatus>
+  | ReturnType<typeof setQuestions>
+
+export type InitialStateType = {
+  currentQuestionIndex: number
+  questionsData: [] | QuestionsDataType
+  score: number
+  status: StateStatusType
+  userAnswers: Array<null | string>
+}
+export type StateStatusType = 'idle' | 'loading'
+export type QuestionsDataType = QuestionType[]
+
+export type QuestionType = {
+  correctAnswer: string
+  id: string
+  options: string[]
+  text: string
 }

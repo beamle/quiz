@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ConfettiExplosion from 'react-confetti-explosion'
 
 import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
 import { Question, QuizResultTable } from 'entities/index'
@@ -46,7 +47,14 @@ export const Quiz = () => {
         {currentQuestionIndex < questionsData.length ? (
           <Question handleAnswer={handleAnswer} question={questionsData[currentQuestionIndex]} />
         ) : (
-          <QuizResultTable questionsData={questionsData} score={score} userAnswers={userAnswers} />
+          <>
+            <ConfettiExplosion duration={6500} particleCount={150} width={4000} />
+            <QuizResultTable
+              questionsData={questionsData}
+              score={score}
+              userAnswers={userAnswers}
+            />
+          </>
         )}
       </div>
     </>

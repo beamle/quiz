@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
-import { resetApp } from 'app/model/app-reducer'
-import { QuestionsDataType } from 'app/model/types'
+import { resetApp } from 'app/model/reducers/app-reducer'
 import { useAppDispatch } from 'app/store'
+import { QuestionsDataType } from 'features'
 import { Typography } from 'shared'
 import clauses from 'shared/assets/text/clauses.json'
 import { TBody, TCell, THead, THeader, TRow, Table } from 'shared/ui/table/Table'

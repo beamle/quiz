@@ -1,5 +1,5 @@
-import { QuestionType } from 'app/model/types'
 import { AnswerOption } from 'entities/Question/ui/option/ui/option/AnswerOption'
+import { QuestionType } from 'features'
 import { Typography } from 'shared'
 
 import s from './Question.module.scss'
