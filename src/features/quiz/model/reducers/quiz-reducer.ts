@@ -1,13 +1,14 @@
 import { questionsData, questionsDataAPI } from 'app/api/app-api'
 import { ActionsType, InitialStateType, QuestionsDataType, StateStatusType } from 'app/model/types'
-import { AppThunkDispatch } from 'app/store'
+import { AppRootStateType, AppThunkDispatch, useAppDispatch } from 'app/store'
+import { Dispatch } from 'redux'
+import { showAnswerResultToastTC } from 'shared/ui/toast/model/toast-reducer'
 
 const initialState: InitialStateType = {
   currentQuestionIndex: 0,
   questionsData: [],
   score: 0,
   status: 'idle',
-  // userAnswers: Array(questionsData.length).fill(null),
   userAnswers: [],
 }
 
@@ -29,10 +30,7 @@ export const quizReducer = (
       }
     }
     case 'APP/SET_QUESTIONS': {
-      // action.todolists.forEach(tl => {
-      //   copyState[tl.id] = []
-      // })
-      return { ...state }
+      return { ...state, questionsData: [...action.payload.questionsData] }
     }
     case 'APP/CALCULATE_SCORE': {
       const newScore = state.userAnswers.reduce((score, userAnswer, index) => {
@@ -44,6 +42,17 @@ export const quizReducer = (
       return {
         ...state,
         score: newScore,
+      }
+    }
+    case 'APP/DISPLAY_ANSWER_RESULT': {
+      const isCorrect = state.userAnswers.every(
+        (userAnswer, index) => userAnswer === questionsData[index].correctAnswer
+      )
+
+      showAnswerResultToastTC(isCorrect)
+
+      return {
+        ...state,
       }
     }
     case 'APP/SET-STATUS': {
@@ -66,6 +75,8 @@ export const calculateScore = () =>
     type: 'APP/CALCULATE_SCORE',
   }) as const
 
+export const displayAnswerResultAC = () => ({ type: 'APP/DISPLAY_ANSWER_RESULT' }) as const
+
 export const setAppStatus = (status: StateStatusType) =>
   ({ payload: { status }, type: 'APP/SET-STATUS' }) as const
 
@@ -74,15 +85,26 @@ export const setQuestions = (questionsData: QuestionsDataType) =>
 
 export const getQuestionsDataTC = () => {
   return (dispatch: AppThunkDispatch) => {
-    debugger
     dispatch(setAppStatus('loading'))
     try {
       const res = questionsDataAPI.fetchQuestionsData()
 
-      console.log(res, 'res')
       dispatch(setQuestions(res))
     } catch (e) {
       console.log(e)
     }
   }
+}
+
+export const selectIsCurrentAnswerCorrect = (state: AppRootStateType) => {
+  const currentQuestion = state.quiz.questionsData[state.quiz.currentQuestionIndex - 1]
+  const selectedAnswer = state.quiz.userAnswers[state.quiz.currentQuestionIndex - 1]
+
+  // console.log(state.quiz.userAnswers, 'userAnswers')
+  // console.log(currentQuestion?.correctAnswer, 'current question correct answer')
+  //
+  // console.log(currentQuestion, 'qurrent question')
+  // console.log(selectedAnswer, 'selected answer')
+
+  return selectedAnswer === currentQuestion?.correctAnswer
 }

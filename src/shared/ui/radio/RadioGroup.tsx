@@ -2,10 +2,9 @@ import { ElementRef, forwardRef } from 'react'
 
 import * as RadRadioGroup from '@radix-ui/react-radio-group'
 import { clsx } from 'clsx'
+import { Typography } from 'shared/index'
 
-import s from './RadioGroup.module.scss'
-
-import { Typography } from '../index'
+import s from 'shared/ui/radio/RadioGroup.module.scss'
 
 export type RadioGroupProps = {
   onValueChange?: (item: any) => void

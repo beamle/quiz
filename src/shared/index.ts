@@ -1,3 +1,3 @@
-export { Button } from './button/Button'
-export { RadioGroup } from './radio/RadioGroup'
-export { Typography } from './typography/Typography'
+export { Button } from 'shared/ui/button/Button'
+export { RadioGroup } from 'shared/ui/radio/RadioGroup'
+export { Typography } from 'shared/ui/typography/Typography'

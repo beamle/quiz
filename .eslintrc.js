@@ -5,6 +5,7 @@ module.exports = {
       files: ['**/*.stories.tsx'],
       rules: {
         'no-console': 'off',
+        'react/jsx-curly-brace-presence': 'off',
         'react-hooks/rules-of-hooks': 'off',
       },
     },

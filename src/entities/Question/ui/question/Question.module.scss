@@ -1,0 +1,33 @@
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .questionText {
+    margin-bottom: 30px;
+    //color: var(--color-description);
+  }
+
+  .answersContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1em;
+    grid-template-areas:
+    "Question-1 Question-2"
+    "Question-3 Question-4";
+  }
+
+  @media screen and (max-width: 680px) {
+    .answersContainer {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas:
+    "Question-1"
+    "Question-2"
+    "Question-3"
+    "Question-4";
+    }
+
+  }
+}

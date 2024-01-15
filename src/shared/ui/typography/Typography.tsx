@@ -2,12 +2,12 @@ import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import clsx from 'clsx'
 
-import s from './Typography.module.scss'
+import s from 'shared/ui/typography/Typography.module.scss'
 
 export type TypographyProps<T extends ElementType> = {
   as?: T
   title?: string
-  variant?: 'body' | 'h1'
+  variant?: 'body' | 'h1' | 'h2' | 'h4' | 'h6'
 } & ComponentPropsWithoutRef<T>
 
 export const Typography = <T extends ElementType = 'span'>(props: TypographyProps<T>) => {

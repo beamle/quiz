@@ -1,2 +1,2 @@
-export { Quiz } from './quiz/ui/Quiz'
-export * from 'features/quiz/model'
+export { Quiz } from 'features/quiz/ui/quiz/Quiz'
+export * from 'features/quiz/model/index'

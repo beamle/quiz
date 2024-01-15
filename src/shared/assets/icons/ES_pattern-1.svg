@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="595.276pt" height="841.89pt" viewBox="0 0 595.276 841.89">
+<defs>
+<clipPath id="clip_0">
+<path transform="matrix(1,0,0,-1,0,841.89)" d="M587.521 9.124H7.755005V831.89H587.521Z"/>
+</clipPath>
+<g id="pattern_tile_1">
+<path transform="matrix(1,0,0,-1,-5322.408,2624.965)" d="M0 0C0-.343-.275-.621-.614-.621-.952-.621-1.227-.343-1.227 0-1.227 .343-.952 .62-.614 .62-.275 .62 0 .343 0 0"/>
+</g>
+<pattern id="pattern_1" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse" x="0" y="0" width="14.8363" height="14.8501">
+<g transform="matrix(1,0,0,-1,5330.44,2632.3902)">
+<use x="0" y="0" xlink:href="#pattern_tile_1"/>
+</g>
+</pattern>
+</defs>
+<g clip-path="url(#clip_0)">
+<rect transform="matrix(1,0,0,-1,-5330.44,2632.3902)" fill="url(#pattern_1)" x="5338.195" y="1799.6242" width="579.7661" height="822.766"/>
+</g>
+</svg>

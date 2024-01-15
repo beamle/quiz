@@ -1,49 +1,32 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import { clsx } from 'clsx'
+import { Typography } from 'shared/ui/typography/Typography'
 
-import s from './Button.module.scss'
+import s from 'shared/ui/button/Button.module.scss'
 
 export type ButtonVariants = 'clean' | 'icon' | 'link' | 'primary'
 
 export type ButtonProps<T extends ElementType> = {
   as?: T
+  btnText?: string
   children?: ReactNode | string
   className?: string
   icon?: ReactNode
-  iconFirst?: boolean
   variant?: ButtonVariants
 } & ComponentPropsWithoutRef<T>
 
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
-  const {
-    as: Component = 'button',
-    children,
-    className,
-    icon,
-    iconFirst,
-    variant = 'primary',
-    ...rest
-  } = props
+  const { as: Component = 'button', btnText, children, className, variant, ...rest } = props
 
   const classNames = {
-    component: clsx(s.button, s[variant], className && className),
-    icon: clsx(s.icon, s[variant]),
+    component: clsx(s.button, variant && s[variant], className && className),
+    text: clsx(s.button, btnText && s.btnText),
   }
 
   return (
     <Component className={classNames.component} {...rest}>
-      {iconFirst ? (
-        <>
-          <div className={classNames.icon}>{icon}</div>
-          {children}
-        </>
-      ) : (
-        <>
-          {children}
-          <div className={classNames.icon}>{icon}</div>
-        </>
-      )}
+      {children}
     </Component>
   )
 }

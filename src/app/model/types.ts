@@ -1,5 +1,6 @@
 import {
   calculateScore,
+  displayAnswerResultAC,
   selectAnswer,
   setAppStatus,
   setQuestions,
@@ -7,6 +8,8 @@ import {
 
 export type ActionsType =
   | ReturnType<typeof calculateScore>
+  | ReturnType<typeof displayAnswerResultAC>
+  // | ReturnType<typeof displayAnswerResult>
   | ReturnType<typeof selectAnswer>
   | ReturnType<typeof setAppStatus>
   | ReturnType<typeof setQuestions>
@@ -18,9 +21,11 @@ export type InitialStateType = {
   userAnswers: Array<null | string>
 }
 export type StateStatusType = 'idle' | 'loading'
-export type QuestionsDataType = {
+export type QuestionsDataType = QuestionType[]
+
+export type QuestionType = {
   correctAnswer: string
-  id: number
+  id: string
   options: string[]
   text: string
-}[]
+}
