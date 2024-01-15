@@ -1,6 +1,6 @@
 import {
   calculateScore,
-  displayAnswerResultAC,
+  resetQuiz,
   selectAnswer,
   setAppStatus,
   setQuestions,
@@ -8,8 +8,7 @@ import {
 
 export type ActionsType =
   | ReturnType<typeof calculateScore>
-  | ReturnType<typeof displayAnswerResultAC>
-  // | ReturnType<typeof displayAnswerResult>
+  | ReturnType<typeof resetQuiz>
   | ReturnType<typeof selectAnswer>
   | ReturnType<typeof setAppStatus>
   | ReturnType<typeof setQuestions>

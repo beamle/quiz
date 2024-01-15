@@ -1,4 +1,8 @@
+import { ReactNode } from 'react'
+
+import { resetApp } from 'app/model/app-reducer'
 import { QuestionsDataType } from 'app/model/types'
+import { useAppDispatch } from 'app/store'
 import { Typography } from 'shared'
 import clauses from 'shared/assets/text/clauses.json'
 import { TBody, TCell, THead, THeader, TRow, Table } from 'shared/ui/table/Table'
@@ -12,13 +16,18 @@ type QuizResultTableType = {
 }
 
 export const QuizResultTable = ({ questionsData, score, userAnswers }: QuizResultTableType) => {
+  const dispatch = useAppDispatch()
+  const restartApp = () => {
+    dispatch(resetApp())
+  }
+
   return (
     <div className={s.quizResultTable}>
       <Typography as={'h2'} variant={'h2'}>
         Koondskoor: {score} / {questionsData.length}
       </Typography>
       <Typography as={'h6'} variant={'h6'}>
-        {calcResult(score, questionsData)}
+        {calcResult(score, questionsData, restartApp)}{' '}
       </Typography>
       <Table>
         <THead>
@@ -66,13 +75,27 @@ export const QuizResultTable = ({ questionsData, score, userAnswers }: QuizResul
   )
 }
 
-function calcResult(score: number, questionsData: QuestionsDataType) {
+function calcResult(score: number, questionsData: QuestionsDataType, restartApp: () => void) {
   if (score === questionsData.length) {
-    return clauses.Perfect
+    return <FinalResultClause clause={clauses.Perfect} restartApp={restartApp} />
   }
   if (score > questionsData.length - 2) {
-    return clauses.Good
+    return <FinalResultClause clause={clauses.Good} restartApp={restartApp} />
   } else {
-    return clauses.Bad
+    return <FinalResultClause clause={clauses.Bad} restartApp={restartApp} />
   }
+}
+type FinalResultClauseType = {
+  clause: string
+  restartApp: () => void
+}
+function FinalResultClause({ clause, restartApp }: FinalResultClauseType) {
+  return (
+    <>
+      {clause} Kui soovid siis{' '}
+      <span className={s.restartApp} onClick={restartApp}>
+        proovi veelkord!
+      </span>{' '}
+    </>
+  )
 }

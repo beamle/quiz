@@ -24,7 +24,7 @@ export const Toast = ({ description, open, setOpen }: ToastProps) => {
         <RadToast.Close />
       </RadToast.Root>
 
-      <RadToast.Viewport className={s.ToastViewport} hotkey={['shiftKeyF']} />
+      <RadToast.Viewport className={s.ToastViewport} hotkey={['altKey', 'KeyD']} />
     </RadToast.Provider>
   )
 }

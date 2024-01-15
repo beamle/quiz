@@ -6,16 +6,33 @@
   padding: 0 40px;
   height: 70vh;
   width: 100%;
-  .pattern {
-    background-image: url("../shared/assets/icons/ES_pattern-1.svg");
-    background-size: 500px;
-    background-repeat: repeat;
-  }
-  .logo{
-    margin-left: -20px;
-  }
-  .appContentWrapper {
-    max-width: 1024px;
+  .introduction {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    gap: 20px;
 
+    .hint {
+      margin-top: 100px;
+    }
+  }
+
+  .appContainer {
+    max-width: 1024px;
+    width: 100%;
+    .pattern {
+      background-image: url("../shared/assets/icons/ES_pattern-1.svg");
+      background-size: 500px;
+      background-repeat: repeat;
+    }
+
+    .logo {
+      margin-left: -20px;
+    }
+
+    .appContentWrapper {
+      max-width: 1024px;
+    }
   }
 }
