@@ -1,4 +1,4 @@
-import { AppThunkDispatch } from 'app/store'
+import { AppRootStateType, AppThunkDispatch } from 'app/store'
 import { Dispatch } from 'redux'
 import clauses from 'shared/assets/text/clauses.json'
 
@@ -32,3 +32,5 @@ const showToast = (message: string) => {
 }
 
 type ActionsType = ReturnType<typeof showToast>
+
+export const selectToastMessage = (state: AppRootStateType) => state.toast.toastMessage

@@ -1,5 +1,3 @@
-import { ReactNode } from 'react'
-
 import { resetApp } from 'app/model/reducers/app-reducer'
 import { useAppDispatch } from 'app/store'
 import { QuestionsDataType } from 'features'
@@ -89,12 +87,13 @@ type FinalResultClauseType = {
   clause: string
   restartApp: () => void
 }
+
 function FinalResultClause({ clause, restartApp }: FinalResultClauseType) {
   return (
     <>
-      {clause} Kui soovid siis{' '}
+      {clause} Kui soovid, siis{' '}
       <span className={s.restartApp} onClick={restartApp}>
-        proovi veelkord!
+        proovi veel!
       </span>{' '}
     </>
   )

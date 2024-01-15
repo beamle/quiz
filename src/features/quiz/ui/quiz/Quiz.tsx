@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import ConfettiExplosion from 'react-confetti-explosion'
 
-import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
+import { useAppDispatch, useAppSelector } from 'app/store'
 import { Question, QuizResultTable } from 'entities/index'
 import {
   calculateScore,
@@ -13,7 +13,7 @@ import {
   selectUserAnswers,
   selectUserScore,
 } from 'features/quiz/model'
-import { showAnswerResultToastTC } from 'shared/ui/toast/model/toast-reducer'
+import { selectToastMessage, showAnswerResultToastTC } from 'shared/ui/toast/model/toast-reducer'
 import { Toast } from 'shared/ui/toast/ui/Toast'
 
 import s from './Quiz.module.scss'
@@ -24,10 +24,9 @@ export const Quiz = () => {
   const userAnswers = useAppSelector(selectUserAnswers)
   const score = useAppSelector(selectUserScore)
   const questionsData = useAppSelector(selectQuestionsData)
-  const toastMessage = useAppSelector((state: AppRootStateType) => state.toast.toastMessage)
-  const [openToast, setOpenToast] = useState(false)
+  const toastMessage = useAppSelector(selectToastMessage)
   const isCurrentAnswerCorrect = useAppSelector(selectIsCurrentAnswerCorrect)
-  // TODO FINISH HERE SELECTORS
+  const [openToast, setOpenToast] = useState(false)
 
   useEffect(() => {
     dispatch(getQuestionsDataTC())

@@ -3,7 +3,7 @@ import { resetQuiz } from 'features'
 
 const initialState: InitialStateType = {
   appStatus: false,
-  isLoading: false,
+  isLoading: true,
 }
 
 export const appReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -13,6 +13,9 @@ export const appReducer = (state = initialState, action: ActionsType): InitialSt
     }
     case 'APP/RESET_APP': {
       return { ...state, appStatus: false }
+    }
+    case 'APP/SET_LOADING': {
+      return { ...state, isLoading: action.payload.isLoading }
     }
 
     default:
@@ -31,6 +34,12 @@ export const resetAppStatus = () =>
     type: 'APP/RESET_APP',
   }) as const
 
+export const setAppLoading = (isLoading: boolean) =>
+  ({
+    payload: { isLoading },
+    type: 'APP/SET_LOADING',
+  }) as const
+
 export const resetApp = () => (dispatch: AppThunkDispatch) => {
   dispatch(resetAppStatus())
   dispatch(resetQuiz())
@@ -41,4 +50,7 @@ type InitialStateType = {
   isLoading: boolean
 }
 
-type ActionsType = ReturnType<typeof initiateApp> | ReturnType<typeof resetAppStatus>
+type ActionsType =
+  | ReturnType<typeof initiateApp>
+  | ReturnType<typeof resetAppStatus>
+  | ReturnType<typeof setAppLoading>
