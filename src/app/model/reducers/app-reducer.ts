@@ -45,7 +45,7 @@ export const resetApp = () => (dispatch: AppThunkDispatch) => {
   dispatch(resetQuiz())
 }
 
-type InitialStateType = {
+export type InitialStateType = {
   appStatus: boolean
   isLoading: boolean
 }

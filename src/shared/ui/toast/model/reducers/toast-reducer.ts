@@ -27,7 +27,7 @@ export const showAnswerResultToastTC = (isCorrect: boolean) => {
   }
 }
 
-const showToast = (message: string) => {
+export const showToast = (message: string) => {
   return { payload: message, type: 'TOAST/SHOW_TOAST' }
 }
 

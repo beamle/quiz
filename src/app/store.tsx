@@ -4,7 +4,7 @@ import { appReducer } from 'app/model/reducers/app-reducer'
 import { quizReducer } from 'features'
 import { Action, applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
 import { ThunkDispatch, thunk as thunkMiddleware } from 'redux-thunk'
-import { toastReducer } from 'shared/ui/toast/model/toast-reducer'
+import { toastReducer } from 'shared/ui/toast/'
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
 
 const middleware = applyMiddleware(thunkMiddleware)
 
-// @ts-ignore
+//@ts-ignore
 export const store = createStore(rootReducer, middleware)
 
 export type AppRootStateType = ReturnType<typeof rootReducer>

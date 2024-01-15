@@ -64,7 +64,7 @@ export const calculateScore = () =>
     type: 'QUIZ/CALCULATE_SCORE',
   }) as const
 
-export const setAppStatus = (status: StateStatusType) =>
+export const setQuizStatus = (status: StateStatusType) =>
   ({ payload: { status }, type: 'QUIZ/SET-STATUS' }) as const
 
 export const setQuestions = (questionsData: QuestionsDataType) =>
@@ -74,13 +74,13 @@ export const resetQuiz = () => ({ type: 'QUIZ/RESET_QUIZ' }) as const
 
 export const getQuestionsDataTC = () => {
   return (dispatch: AppThunkDispatch) => {
-    dispatch(setAppStatus('loading'))
+    dispatch(setQuizStatus('loading'))
     try {
       const res = questionsDataAPI.fetchQuestionsData()
 
       dispatch(setQuestions(res))
     } catch (e) {
-      console.log(e)
+      throw new Error('Failed to fetch questions data')
     }
   }
 }
@@ -96,8 +96,8 @@ export type ActionsType =
   | ReturnType<typeof calculateScore>
   | ReturnType<typeof resetQuiz>
   | ReturnType<typeof selectAnswer>
-  | ReturnType<typeof setAppStatus>
   | ReturnType<typeof setQuestions>
+  | ReturnType<typeof setQuizStatus>
 
 export type InitialStateType = {
   currentQuestionIndex: number

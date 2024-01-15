@@ -13,7 +13,10 @@ import {
   selectUserAnswers,
   selectUserScore,
 } from 'features/quiz/model'
-import { selectToastMessage, showAnswerResultToastTC } from 'shared/ui/toast/model/toast-reducer'
+import {
+  selectToastMessage,
+  showAnswerResultToastTC,
+} from 'shared/ui/toast/model/reducers/toast-reducer'
 import { Toast } from 'shared/ui/toast/ui/Toast'
 
 import s from './Quiz.module.scss'
