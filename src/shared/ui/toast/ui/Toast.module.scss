@@ -2,8 +2,11 @@
 .ToastViewport {
     //--viewport-padding: 10px;
     position: fixed;
-    bottom: 30px;
+    bottom: 20%;
+    right: 40%;
+    left: 40%;
     display: flex;
+    align-items: center;
     flex-direction: column;
     padding: var(--viewport-padding);
     gap: 10px;
@@ -11,6 +14,11 @@
     list-style: none;
     z-index: 2147483647;
     outline: none;
+
+    @media screen and (max-width: 680px) {
+        left: 40px;
+        right: 40px;
+    }
 }
 
 .ToastRoot {
